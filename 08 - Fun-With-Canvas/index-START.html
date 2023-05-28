@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>HTML5 Canvas</title>
+  <link rel="icon" href="https://fav.farm/🔥" />
+  <style>
+    html,
+    body {
+      margin: 0;
+    }
+    input {display: inline-block;}
+  </style>
+</head>
+
+<body>
+  <canvas id="draw" width="800" height="800"></canvas>
+  
+
+
+
+  <script>
+    const canvas = document.querySelector('#draw');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    ctx.strokeStyle = "#BADA55";
+    ctx.lineJoin = 'round';
+    ctx.lineCap="round";
+    ctx.lineWidth=40;
+    canvas.style.border = '2px solid red';
+
+
+    let hue = 0;
+
+    let isDrawing = false;
+    let lastX = 0;
+    let lastY = 0;
+
+    function draw(e) {
+      
+      if(!isDrawing) return // stop the function from running when they are not moused down
+      // console.log(e);
+
+      ctx.strokeStyle = `hsl(${hue},100%,50%)`;
+
+      ctx.beginPath();
+      ctx.moveTo(lastX,lastY);
+      ctx.lineTo(e.offsetX,e.offsetY);
+      ctx.stroke();
+      [lastX,lastY] = [e.offsetX,e.offsetY];
+      hue++;
+      // console.log(hue)
+    };
+
+    canvas.addEventListener('mousemove',draw);
+    canvas.addEventListener('mousedown',(e)=>{
+      isDrawing = true;
+      [lastX,lastY] = [e.offsetX,e.offsetY];
+    });
+    canvas.addEventListener('mouseup',()=>isDrawing = false);
+    canvas.addEventListener('mouseout',()=>isDrawing = false);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // ctx.fillStyle = "red";
+    // ctx.fillRect(50, 50, 700, 100);//(x,y,width,height)
+
+
+    // ctx.moveTo(100, 100);
+    // ctx.lineTo(500, 0);
+    // ctx.stroke()
+
+
+
+    //To draw a circle on a canvas, use the following methods:
+
+    /*beginPath() - begins a path
+    arc(x,y,r,startangle,endangle) - creates an arc/curve. To create a circle with arc(): Set start angle to 0 and end angle to 2*Math.PI. The x and y parameters define the x- and y-coordinates of the center of the circle. The r parameter defines the radius of the circle.*/
+
+
+    // ctx.beginPath();
+    // ctx.arc(400, 400, 100, 0, 2 * Math.PI);
+    // ctx.stroke();
+
+
+
+
+    ///Canvas - Gradients
+
+    /*Gradients can be used to fill rectangles, circles, lines, text, etc. Shapes on the canvas are not limited to solid colors.
+    
+    There are two different types of gradients:
+    
+    createLinearGradient(x,y,x1,y1) - creates a linear gradient
+    createRadialGradient(x,y,r,x1,y1,r1) - creates a radial/circular gradient
+    Once we have a gradient object, we must add two or more color stops.
+    
+    The addColorStop() method specifies the color stops, and its position along the gradient. Gradient positions can be anywhere between 0 to 1.
+    
+    To use the gradient, set the fillStyle or strokeStyle property to the gradient, then draw the shape (rectangle, text, or a line).*/
+
+
+
+    //Canvas Text
+    /*
+    To draw text on a canvas, the most important property and methods are:
+    
+    font - defines the font properties for the text
+    fillText(text,x,y) - draws "filled" text on the canvas
+    strokeText(text,x,y) - draws text on the canvas (no fill)*/
+
+    // ctx.font = "2rem Arial";
+    // ctx.fillStyle = "red";
+    // ctx.textAlign = "center";
+    // ctx.fillText('Hello World', canvas.width / 2, canvas.height / 8);
+    // ctx.strokeText('Hello World', 100, 200);
+
+
+  </script>
+</body>
+
+</html>
