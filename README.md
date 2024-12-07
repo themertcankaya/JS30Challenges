@@ -3,7 +3,4 @@
 
 # JS30Challenges
 
-
-Hello everyone! 
-
 Here I'm trying the challenges I saw on (https://javascript30.com/) website.
